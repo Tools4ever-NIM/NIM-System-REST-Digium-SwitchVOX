@@ -1,0 +1,278 @@
+{
+    "schema": {
+        "options": {},
+        "crud_objects": {
+            "accessControl": {
+                "operations": {
+                    "accessControlList": {
+                        "method": "get",
+                        "verb": "post",
+                        "call": {
+                            "path": "/json"
+                        },
+                        "body": {
+                            "request": {
+                                    "method": "switchvox.accessControl.getList", 
+                                    "parameters": {}
+                            }
+                        },
+                        "processing_options": {
+                            "output_field": "response.result.rules.rule"
+                        },
+                        "query_parameters": {}
+                    }
+                },
+                "parameters": {},
+                "key": "id",
+                "resources": {
+                    "id": "string*",
+                    "allowed_services": {
+                        "allowed_service": "string*"
+                    },
+                    "ignore_blocked_ips": "string*",
+                    "system": "string*",
+                    "network": "string*",
+                    "name": "string*"
+                }
+            },
+            "blockedIps": {
+                "operations": {
+                    "blockedIpsList": {
+                        "method": "get",
+                        "verb": "post",
+                        "call": {
+                            "path": "/json"
+                        },
+                        "body": {
+                            "request": {
+                                    "method": "switchvox.blockedIps.getList", 
+                                    "parameters": {}
+                            }
+                        },
+                        "processing_options": {
+                            "output_field": "response.result.blocked_ips.blocked_ip"
+                        },
+                        "query_parameters": {}
+                    }
+                },
+                "parameters": {},
+                "key": "id",
+                "resources": {
+                    "date_applied": "string*",
+                    "limit_count": "string*",
+                    "limit_type": "string*",
+                    "protocol": "string*",
+                    "credentials": "string*",
+                    "port": "string*",
+                    "ip": "string*",
+                    "id": "string*",
+                    "type": "string*"
+                }
+            },
+            "parkingLots": {
+                "operations": {
+                    "parkingLotsList": {
+                        "method": "get",
+                        "verb": "post",
+                        "call": {
+                            "path": "/json"
+                        },
+                        "body": {
+                            "request": {
+                                    "method": "switchvox.parkingLots.getList", 
+                                    "parameters": {}
+                            }
+                        },
+                        "processing_options": {
+                            "output_field": "response.result.parking_lots.parking_lot"
+                        },
+                        "query_parameters": {}
+                    }
+                },
+                "parameters": {},
+                "key": "account_id",
+                "resources": {
+                    "parked_calls": "string*",
+                    "date_created": "string*",
+                    "account_id": "string*",
+                    "parking_lot_start": "string*",
+                    "timeout": "string*",
+                    "parking_lot_stop": "string*"
+                }
+            },
+            "extensionAssignmentTypes": {
+                "operations": {
+                    "extensionAssignmentTypesList": {
+                        "method": "get",
+                        "call": {
+                            "mode": "constant",
+                            "values": [
+                                {
+                                    "type": "assigned"
+                                },
+                                {
+                                    "type": "ignored"
+                                },
+                                {
+                                    "type": "unassigned_extensions"
+                                },
+                                {
+                                    "type": "unassigned_phones"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "key": "type",
+                "resources": {
+                    "type": "string*"
+                }
+            },
+            "extensions": {
+                "operations": {
+                    "extensionsList": {
+                        "method": "get",
+                        "verb": "post",
+                        "call": {
+                            "mode": "iteration",
+                            "table": "extensionAssignmentTypes",
+                            "iterator": "type",
+                            "path": "/json"
+                        },
+                        "body": {
+                            "request": {
+                                    "method": "switchvox.digiumPhones.assignments.getList", 
+                                    "parameters": {
+                                        "filter": "{iterator}"
+                                    }
+                            }
+                        },
+                        "processing_options": {
+                            "output_field": "response.result.assignments.assignment"
+                        },
+                        "query_parameters": {}
+                    }
+                },
+                "parameters": {},
+                "key": "assignment_id",
+                "resources": {
+                    "mobile_assignment_tokens": "string*",
+                    "assignment_id": "string*",
+                    "phone_type": "string*",
+                    "configured_by": "string*",
+                    "type": "string*",
+                    "extension": "string*",
+                    "account_id": "string*",
+                    "mac": "string*",
+                    "ip": "string*",
+                    "model": "string*"
+                }
+            },
+            "directory": {
+                "operations": {
+                    "directoryList": {
+                        "method": "get",
+                        "verb": "post",
+                        "call": {
+                            "path": "/json"
+                        },
+                        "body": {
+                            "request": {
+                                    "method": "switchvox.directories.getExtensionList", 
+                                    "parameters": {"sort_field": "", "sort_order": "", "items_per_page": "100000", "page_number": ""}
+                            }
+                        },
+                        "processing_options": {
+                            "output_field": "response.result.directory.extensions.extension"
+                        },
+                        "query_parameters": {}
+                    }
+                },
+                "parameters": {},
+                "key": "account_id",
+                "resources": {
+                    "type": "string*", 
+                    "status": "string*", 
+                    "server_uuid": "string*", 
+                    "date_created": "string*", 
+                    "account_id": "string*", 
+                    "type_display": "string*", 
+                    "display": "string*", 
+                    "number": "string*", 
+                    "search_by": "string*", 
+                    "exit_extension": "string*", 
+                    "parking_lot_start": "string*", 
+                    "parking_lot_stop": "string*", 
+                    "ivr_menu_entry_point": "string*", 
+                    "ivr_menu_name": "string*", 
+                    "ivr_menu_id": "string*", 
+                    "password_required": "string*", 
+                    "location_info": "string*", 
+                    "title": "string*", 
+                    "login_password_score": "string*", 
+                    "phone_password_score": "string*", 
+                    "converged": "string*", 
+                    "has_additional_phones": "string*", 
+                    "master_account_id": "string*", 
+                    "username": "string*", 
+                    "lang_locale": "string*", 
+                    "template_id": "string*", 
+                    "login_email_address": "string*", 
+                    "first_name": "string*", 
+                    "location": "string*", 
+                    "email_address": "string*", 
+                    "converged_type": "string*", 
+                    "template_name": "string*", 
+                    "location_id": "string*", 
+                    "last_name": "string*", 
+                    "display_number": "string*", 
+                    "profile_image_link": "string*", 
+                    "profile_image_id": "string*", 
+                    "voicemail_password_score": "string*", 
+                    "call_queue_name": "string*", 
+                    "member_count": "string*", 
+                    "strategy": "string*"
+                }
+            }
+        }
+    },
+    "rest": {
+        "config": {
+            "baseUrl": "https://{tenant_id}",
+            "get": {
+                "query_parameters": {
+                }
+            },
+            "authentication": "basic_auth",
+            "call_handling": "generic",
+            "test_connection": {
+                "url": "/json/"
+            },
+            "accept": "application/json",
+            "retry": [
+                {
+                    "type": "statusCode",
+                    "statusCode": 429,
+                    "retry": {
+                        "type": "simple",
+                        "maxCount": 15,
+                        "waitTime": 60
+                    }
+                },
+                {
+                    "type": "connectionError"
+                }
+            ]
+        }
+    },
+    "connection": {
+        "items": [
+            {
+                "name": "tenant_id",
+                "type": "textbox",
+                "label": "Tenant URL:",
+                "value": ""
+              }
+        ]
+    }
+}
